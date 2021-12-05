@@ -8,10 +8,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        temp();
+        aoc4_2();
     }
 
-    public static void temp(){
+    public static void aoc4_2(){
         List<List<String>> bingoInput = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\temp\\input.txt"))) {
             String line;
@@ -60,7 +60,6 @@ public class Main {
             }
 
             for (List<List<Integer>> bingoBoardValue : mainBingoBoard){
-
                 for (int i = 0; i < 5; i++) {
                     List<Integer> columns = new ArrayList<>();
                     for (List<Integer> bingoRow : bingoBoardValue){
@@ -68,6 +67,16 @@ public class Main {
                     }
                     if (Collections.frequency(columns, 999) == 5) {
                         System.out.println("BINGO!!! With: " + s);
+                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
+                        for (List<Integer> st : bingoBoardValue){
+                            for (Integer valueI : st) {
+                                if (valueI != 999){
+                                    listOfUnmarkedNumbers.add(valueI);
+                                }
+                            }
+                        }
+                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
                         break mainLoop;
                     }
                 }
@@ -75,16 +84,26 @@ public class Main {
                 for (List<Integer> bingoRow : bingoBoardValue){
                     if (Collections.frequency(bingoRow, 999) == 5) {
                         System.out.println("BINGO!!! With: " + s);
+                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
+                        for (List<Integer> st : bingoBoardValue){
+                            for (Integer valueI : st) {
+                                if (valueI != 999){
+                                    listOfUnmarkedNumbers.add(valueI);
+                                }
+                            }
+                        }
+                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
                         break mainLoop;
-                    }
                     }
                 }
             }
+        }
 
 
     }
 
-    public static void aoc4_1() {
+    public static void aoc4_1(){
         List<List<String>> bingoInput = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\temp\\input.txt"))) {
             String line;
@@ -99,7 +118,6 @@ public class Main {
         bingoInput.remove(0);
         bingoInput.removeIf(l -> l.get(0).isEmpty());
         System.out.println(randomNumbers);
-
         List<List<Integer>> bingoRowsAsList = new ArrayList<>();
         for (List<String> bingoRow : bingoInput) {
             List<Integer> list = new ArrayList<>();
@@ -111,68 +129,68 @@ public class Main {
         }
         System.out.println(bingoRowsAsList);
 
-        List<List<Integer>> bingoColumnsAsList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            List<Integer> list = new ArrayList<>();
-            for (List<Integer> bingoRow : bingoRowsAsList){
-                list.add(bingoRow.get(i));
-            }
-            bingoColumnsAsList.add(list);
-        }
-        List<List<Integer>> bingoColumnsAsListFinal = new ArrayList<>();
-        for (List<Integer> list : bingoColumnsAsList){
-            for (int i = 0; i < list.size()/5; i++) {
-                bingoColumnsAsListFinal.add(list.subList((5 * i),(i + 1) * 5));
-            }
-        }
-        System.out.println(bingoColumnsAsListFinal);
+        List<List<List<Integer>>> mainBingoBoard = new ArrayList<>();
+        List<List<Integer>> bingoBoard = new ArrayList<>();
 
-        boolean bingo = false;
-        outerloop:
-        for (String value : randomNumbers) {
-            for (List<Integer> list : bingoRowsAsList) {
-                if (list.contains(Integer.valueOf(value))) {
-                    list.set(list.indexOf(Integer.valueOf(value)), 999);
-                }
+        for (List<Integer> values : bingoRowsAsList){
+            bingoBoard.add(values);
+            if (bingoBoard.size() == 5) {
+                mainBingoBoard.add(List.copyOf(bingoBoard));
+                bingoBoard.clear();
             }
-            for (List<Integer> list : bingoColumnsAsListFinal) {
-                if (list.contains(Integer.valueOf(value))) {
-                    list.set(list.indexOf(Integer.valueOf(value)), 999);
+        }
+        System.out.println(mainBingoBoard);
+
+        mainLoop:
+        for (String s : randomNumbers){
+            for (List<List<Integer>> mainBingoBoardValue : mainBingoBoard){
+                for (List<Integer> bingoBoardValue : mainBingoBoardValue){
+                    if (bingoBoardValue.contains(Integer.valueOf(s))) {
+                        bingoBoardValue.set(bingoBoardValue.indexOf(Integer.valueOf(s)), 999);
+                    }
                 }
             }
 
-            for (List<Integer> list : bingoRowsAsList) {
-                if (Collections.frequency(list, 999) == 5) {
-                    System.out.println("BINGO!!! With: " + value);
-
-                    List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
-                    for (List<Integer> values : bingoRowsAsList){
-                        for (Integer number : values) {
-                            if (number != 999){
-                                listOfUnmarkedNumbers.add(number);
+            for (List<List<Integer>> bingoBoardValue : mainBingoBoard){
+                for (int i = 0; i < 5; i++) {
+                    List<Integer> columns = new ArrayList<>();
+                    for (List<Integer> bingoRow : bingoBoardValue){
+                        columns.add(bingoRow.get(i));
+                    }
+                    if (Collections.frequency(columns, 999) == 5) {
+                        System.out.println("BINGO!!! With: " + s);
+                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
+                        for (List<Integer> st : bingoBoardValue){
+                            for (Integer valueI : st) {
+                                if (valueI != 999){
+                                    listOfUnmarkedNumbers.add(valueI);
+                                }
                             }
                         }
+                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        break mainLoop;
                     }
-                    for (List<Integer> values : bingoColumnsAsListFinal){
-                        for (Integer number : values) {
-                            if (number != 999){
-                                listOfUnmarkedNumbers.add(number);
+                }
+
+                for (List<Integer> bingoRow : bingoBoardValue){
+                    if (Collections.frequency(bingoRow, 999) == 5) {
+                        System.out.println("BINGO!!! With: " + s);
+                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
+                        for (List<Integer> st : bingoBoardValue){
+                            for (Integer valueI : st) {
+                                if (valueI != 999){
+                                    listOfUnmarkedNumbers.add(valueI);
+                                }
                             }
                         }
+                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+                        break mainLoop;
                     }
-                    System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
-                    break outerloop;
+                    }
                 }
             }
-
-            for (List<Integer> list : bingoColumnsAsListFinal) {
-                if (Collections.frequency(list, 999) == 5) {
-                    System.out.println("BINGO!!! With: " + value);
-                    break outerloop;
-                }
-            }
-        }
-
 
 
     }
@@ -227,20 +245,6 @@ public class Main {
         System.out.println(Integer.parseInt(String.valueOf(stringListOxygen), 2) * Integer.parseInt(String.valueOf(stringListCO2), 2));
 
 
-    }
-
-    public static int countingPosition(List<List<Integer>> finalIntList, int counter){
-        List<Integer> templateList = new ArrayList<>();
-        for (List<Integer> li : finalIntList){
-            templateList.add(li.get(counter));
-        }
-        int one = Collections.frequency(templateList, 1);
-        int zero = Collections.frequency(templateList, 0);
-        int countingPosition = 0;
-        if (one >= zero){
-            countingPosition = 1;
-        }
-        return  countingPosition;
     }
 
     public static void aoc3_1(){
@@ -375,6 +379,20 @@ public class Main {
             previousValue = s;
         }
         System.out.println(counter);
+    }
+
+    public static int countingPosition(List<List<Integer>> finalIntList, int counter){
+        List<Integer> templateList = new ArrayList<>();
+        for (List<Integer> li : finalIntList){
+            templateList.add(li.get(counter));
+        }
+        int one = Collections.frequency(templateList, 1);
+        int zero = Collections.frequency(templateList, 0);
+        int countingPosition = 0;
+        if (one >= zero){
+            countingPosition = 1;
+        }
+        return  countingPosition;
     }
 
     public static String[] readInput(){
