@@ -8,8 +8,96 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        aoc4_2();
+        aoc4_3();
     }
+
+
+
+
+    public static void aoc4_3(){
+        int[] nums;
+        int[][][] cards;
+
+        Scanner reader = null;
+        try {
+            reader = new Scanner(new File("C:\\temp\\input.txt"));
+        } catch (Exception e) {
+            System.out.println("file not found");
+        }
+
+        nums = Arrays.stream(reader.nextLine().split(",")).mapToInt(Integer::parseInt).toArray();
+        reader.nextLine(); // eat up blank line
+
+        int row = 0, col = 0, card = 0;
+        cards = new int[100][5][5];
+        while (reader.hasNext()) {
+            cards[card][row][col] = reader.nextInt();
+            col++;
+            if (col == 5) {
+                col = 0;
+                row++;
+            }
+            if (row == 5) {
+                row = 0;
+                card++;
+            }
+
+        }
+
+        reader.close();
+
+        boolean[] hasCardWon = new boolean[100];
+        int numOfCardsThatHaveWon = 0;
+
+        int losingCard = -1;
+        int numCalled = -1;
+        int i = 0;
+        boolean done = false;
+        while (!done) {
+            numCalled = nums[i];
+            // this loop will work just like part1, but we will move past any card that has
+            // already won.
+            for (card = 0; card < cards.length; card++) {
+                if (!hasCardWon[card]) {
+                    for (row = 0; row < 5; row++) {
+                        for (col = 0; col < 5; col++) {
+                            if (cards[card][row][col] == numCalled) {
+                                cards[card][row][col] = -1;
+                                if (cards[card][0][col] + cards[card][1][col] + cards[card][2][col]
+                                        + cards[card][3][col] + cards[card][4][col] == -5) {
+                                    hasCardWon[card] = true;
+                                    numOfCardsThatHaveWon++;
+                                } else if (cards[card][row][0] + cards[card][row][1] + cards[card][row][2]
+                                        + cards[card][row][3] + cards[card][row][4] == -5) {
+                                    hasCardWon[card] = true;
+                                    numOfCardsThatHaveWon++;
+                                }
+                            }
+                            // If 100 unique cards have won, we are done and the current card is our
+                            // last winner.
+                            if (numOfCardsThatHaveWon == 100) {
+                                losingCard = card;
+                                done = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            i++;
+        }
+        int answer = 0;
+        for (row = 0; row < 5; row++) {
+            for (col = 0; col < 5; col++) {
+                if (cards[losingCard][row][col] > 0) {
+                    answer += cards[losingCard][row][col];
+                }
+            }
+        }
+        answer *= numCalled;
+        System.out.println(answer);
+    }
+
 
     public static void aoc4_2(){
         List<List<String>> bingoInput = new ArrayList<>();
@@ -39,6 +127,7 @@ public class Main {
 
         List<List<List<Integer>>> mainBingoBoard = new ArrayList<>();
         List<List<Integer>> bingoBoard = new ArrayList<>();
+        List<Integer> completedBoards = new ArrayList<>();
 
         for (List<Integer> values : bingoRowsAsList){
             bingoBoard.add(values);
@@ -48,6 +137,8 @@ public class Main {
             }
         }
         System.out.println(mainBingoBoard);
+        List<Integer> boardCounterSet = new ArrayList<>();
+        String lastRandomNumber = "";
 
         mainLoop:
         for (String s : randomNumbers){
@@ -58,49 +149,59 @@ public class Main {
                     }
                 }
             }
-
+            int boardCounter = 0;
             for (List<List<Integer>> bingoBoardValue : mainBingoBoard){
+                boardCounter++;
                 for (int i = 0; i < 5; i++) {
                     List<Integer> columns = new ArrayList<>();
                     for (List<Integer> bingoRow : bingoBoardValue){
                         columns.add(bingoRow.get(i));
                     }
                     if (Collections.frequency(columns, 999) == 5) {
-                        System.out.println("BINGO!!! With: " + s);
-                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
-                        for (List<Integer> st : bingoBoardValue){
-                            for (Integer valueI : st) {
-                                if (valueI != 999){
-                                    listOfUnmarkedNumbers.add(valueI);
-                                }
-                            }
+                        System.out.println("BINGO!!! With: " + s + " at Board: " + boardCounter);
+                        if(!boardCounterSet.contains(boardCounter)){
+                            boardCounterSet.add(boardCounter);
                         }
-                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
-                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
-                        break mainLoop;
+                        if (boardCounterSet.size() == mainBingoBoard.size()){
+                            lastRandomNumber = s;
+                            break mainLoop;
+                        }
                     }
                 }
 
                 for (List<Integer> bingoRow : bingoBoardValue){
                     if (Collections.frequency(bingoRow, 999) == 5) {
-                        System.out.println("BINGO!!! With: " + s);
-                        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
-                        for (List<Integer> st : bingoBoardValue){
-                            for (Integer valueI : st) {
-                                if (valueI != 999){
-                                    listOfUnmarkedNumbers.add(valueI);
-                                }
+                        System.out.println("BINGO!!! With: " + s + " at Board: " + boardCounter);
+                        if(!boardCounterSet.contains(boardCounter)){
+                            boardCounterSet.add(boardCounter);
+                            if (boardCounterSet.size() == mainBingoBoard.size()){
+                                lastRandomNumber = s;
+                                break mainLoop;
                             }
                         }
-                        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
-                        System.out.println(Integer.parseInt(s) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
-                        break mainLoop;
                     }
                 }
             }
         }
 
+        System.out.println(boardCounterSet);
+        List<Integer> listOfUnmarkedNumbers = new ArrayList<>();
 
+        for (List<Integer> st : mainBingoBoard.get(boardCounterSet.get(boardCounterSet.size() - 1))){
+            System.out.println(st);
+            for (Integer valueI : st) {
+                if (valueI != 999){
+                    listOfUnmarkedNumbers.add(valueI);
+                }
+            }
+        }
+
+        System.out.println(listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+        System.out.println(lastRandomNumber);
+        System.out.println(Integer.parseInt(lastRandomNumber) * listOfUnmarkedNumbers.stream().mapToInt(Integer::intValue).sum());
+
+        // 9366 - to high
+        // 9000 - to high
     }
 
     public static void aoc4_1(){
