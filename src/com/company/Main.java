@@ -1,19 +1,18 @@
 package com.company;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
+import com.company.aoc2022.daytwo.PartOne;
+import com.company.aoc2022.daytwo.PartTwo;
 
 public class Main {
 
     public static void main(String[] args) {
-        aoc4_3();
+        PartOne.run();
+        PartTwo.run();
     }
 
 
 
-
+/*
     public static void aoc4_3(){
         int[] nums;
         int[][][] cards;
@@ -511,4 +510,6 @@ public class Main {
 
         return new String[]{};
     }
+
+ */
 }
