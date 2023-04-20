@@ -5,21 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="046bf8ac-9f1d-424b-ae48-0202209c4f83" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/commons/ReadInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/PartOne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/PartTwo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/RoundEndingsEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/resources/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/resources/input_test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/template/Template.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/DayFourPartOne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/DayFourPartTwo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/resources/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/resources/input_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daythree/DayThreePartOne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daythree/DayThreePartTwo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daythree/resources/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daythree/resources/input_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/DayTwoPartTwo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/template/DayOnePartOne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/aoc2022/template/DayOnePartTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AoC/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AoC/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AoC/com/company/aoc2022/dayTwo/DayTwo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AoC/com/company/aoc2022/template/Template.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/PartOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/DayTwoPartOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/PartTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/aoc2022/template/Template.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/Q395836/dev/AoC/src/com/company/aoc2022/daytwo/resources",
+    "last_opened_file_path": "/Users/Q395836/dev/AoC/src/com/company/aoc2022/dayfour/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,12 +68,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/resources" />
+      <recent name="$PROJECT_DIR$/src/com/company/aoc2022" />
+      <recent name="$PROJECT_DIR$/src/com/company/aoc2022/daythree/resources" />
       <recent name="$PROJECT_DIR$/src/com/company/aoc2022/daytwo/resources" />
       <recent name="$PROJECT_DIR$/src/com/company/aoc2022/template" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/company/aoc2022/dayfour/resources" />
+      <recent name="$PROJECT_DIR$/src/com/company/aoc2022/daythree/resources" />
       <recent name="$PROJECT_DIR$/src/com/company/aoc2022/dayTwo/ressource" />
       <recent name="$PROJECT_DIR$/src/com/company/aoc2022" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.company.aoc2022.daythree" />
+      <recent name="com.company.aoc2022.template" />
     </key>
   </component>
   <component name="RunManager">
@@ -99,7 +114,9 @@
       <option name="presentableId" value="Default" />
       <updated>1681820357390</updated>
       <workItem from="1681820358491" duration="571000" />
-      <workItem from="1681820946975" duration="5207000" />
+      <workItem from="1681820946975" duration="9362000" />
+      <workItem from="1681913823531" duration="592000" />
+      <workItem from="1682000397605" duration="8973000" />
     </task>
     <servers />
   </component>

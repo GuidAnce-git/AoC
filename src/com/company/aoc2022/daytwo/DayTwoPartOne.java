@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 import com.company.aoc2022.commons.ReadInput;
 
-public class PartOne {
-    private PartOne() {
+public class DayTwoPartOne {
+    private DayTwoPartOne() {
     }
 
     public static void run(){
@@ -21,7 +21,7 @@ public class PartOne {
             sum += result(inputList);
             sum += scoreShape(inputList);
         }
-        System.out.println("Part one: " + sum);
+        System.out.println("Day 2 - Part 1: " + sum);
 
     }
 
